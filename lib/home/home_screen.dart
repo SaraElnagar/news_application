@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:news_application/home/search/news_search_delegate.dart';
 import 'package:news_application/home/settings/settings_tab.dart';
+import 'package:news_application/l10n/app_localizations.dart';
 
 import '../app_colors.dart';
-import '../model/Category.dart';
+import '../model/category.dart';
 import 'category/category_details.dart';
 import 'category/category_fragment.dart';
 import 'drawer/home_drawer.dart';
@@ -33,9 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           title: Text(
             selectedSideMenuItem == HomeDrawer.settings
-                ? 'Settings'
+                ? AppLocalizations.of(context)!.settings
                 : selectedCategory == null
-                    ? 'News App'
+                    ? AppLocalizations.of(context)!.app_title
                     : selectedCategory!.title,
             style: Theme.of(context).textTheme.titleLarge,
           ),

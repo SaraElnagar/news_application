@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:news_application/home/news/news_details_screen.dart';
+import 'package:news_application/l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 import '../../api/api_manager.dart';
 import '../../app_colors.dart';
 import '../../model/NewsResponse.dart';
+import '../../providers/app_config_provider.dart';
 import '../news/news_item.dart';
 
 class NewsSearchDelegate extends SearchDelegate {
@@ -28,11 +31,12 @@ class NewsSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
+    final languageProvider = Provider.of<AppConfigProvider>(context).appLanguage;
     if (query.isEmpty) {
-      return const Center(child: Text("No Suggestions"));
+      return Center(child: Text(AppLocalizations.of(context)!.no_suggestions),);
     }
     return FutureBuilder<NewsResponse?>(
-        future: ApiManager.searchNews(query),
+        future: ApiManager.searchNews(query,languageProvider),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -46,9 +50,9 @@ class NewsSearchDelegate extends SearchDelegate {
                 Text(snapshot.data!.message!),
                 ElevatedButton(
                     onPressed: () {
-                      ApiManager.searchNews(query);
+                      ApiManager.searchNews(query,languageProvider);
                     },
-                    child: const Text('Try again'))
+                    child: Text(AppLocalizations.of(context)!.try_again))
               ],
             );
           }
@@ -59,7 +63,7 @@ class NewsSearchDelegate extends SearchDelegate {
                 Text(snapshot.data!.message!),
                 ElevatedButton(
                     onPressed: () {
-                      ApiManager.searchNews(query);
+                      ApiManager.searchNews(query,languageProvider);
                     },
                     child: const Text('Try again'))
               ],

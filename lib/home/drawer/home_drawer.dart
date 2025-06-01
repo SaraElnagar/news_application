@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../app_colors.dart';
+import '../../l10n/app_localizations.dart';
 
 class HomeDrawer extends StatelessWidget {
   static const int categories = 1;
@@ -21,8 +22,7 @@ class HomeDrawer extends StatelessWidget {
           ),
           width: double.infinity,
           color: AppColors.primaryLightColor,
-          child: Text(
-            'News App!',
+          child: Text(("${AppLocalizations.of(context)!.app_title} !"),
             style: Theme.of(context).textTheme.titleLarge,
             textAlign: TextAlign.center,
           ),
@@ -40,7 +40,7 @@ class HomeDrawer extends StatelessWidget {
                   width: 10,
                 ),
                 Text(
-                  'Categories',
+                  (AppLocalizations.of(context)!.categories),
                   style: Theme.of(context).textTheme.titleMedium,
                 )
               ],
@@ -60,7 +60,7 @@ class HomeDrawer extends StatelessWidget {
                   width: 10,
                 ),
                 Text(
-                  'Settings',
+                  (AppLocalizations.of(context)!.settings),
                   style: Theme.of(context).textTheme.titleMedium,
                 )
               ],

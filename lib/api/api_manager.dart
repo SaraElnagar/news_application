@@ -56,9 +56,9 @@ News Api   : https://newsapi.org/v2/everything?q=bitcoin&apiKey=500c5a4f9b244f3d
     }
   }
 
-  static Future<NewsResponse?> searchNews(String query) async {
+  static Future<NewsResponse?> searchNews(String query, String language) async {
     Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.newsApi,
-        {'apiKey': ApiConstants.apiKey, "q": query});
+        {'apiKey': ApiConstants.apiKey, "q": query, "language": language});
     var response = await http.get(url);
     try {
       /// String

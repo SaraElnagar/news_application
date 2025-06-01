@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-
 import '../../api/api_manager.dart';
 import '../../app_colors.dart';
-import '../../model/Category.dart';
+import '../../model/category.dart';
 import '../../model/SourceResponse.dart';
 import '../tabs/tab_widget.dart';
+import 'package:news_application/l10n/app_localizations.dart';
 
 class CategoryDetails extends StatefulWidget {
   Category category;
@@ -29,13 +29,13 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           } else if (snapshot.hasError) {
             return Column(
               children: [
-                const Text('Something went wrong'),
+                Text(AppLocalizations.of(context)!.something_went_wrong),
                 ElevatedButton(
                     onPressed: () {
                       ApiManager.getSources(widget.category.id);
                       setState(() {});
                     },
-                    child: const Text('Try Again'))
+                    child: Text(AppLocalizations.of(context)!.try_again))
               ],
             );
           }
@@ -50,7 +50,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                       ApiManager.getSources(widget.category.id);
                       setState(() {});
                     },
-                    child: const Text('Try Again'))
+                    child: Text(AppLocalizations.of(context)!.try_again))
               ],
             );
           }
