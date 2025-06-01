@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:news_application/l10n/app_localizations.dart';
 import 'package:news_application/model/NewsResponse.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -30,7 +31,7 @@ class NewsDetailsScreen extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: AppColors.primaryLightColor,
             title: Text(
-              args.source?.name ?? 'No Title',
+              args.source?.name ?? '',
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
@@ -77,7 +78,8 @@ class NewsDetailsScreen extends StatelessWidget {
                   ),
                   Text(
                     textAlign: TextAlign.end,
-                    "$formattedHour hours ago",
+                    '$formattedHour'
+                    '${AppLocalizations.of(context)!.hours_ago}',
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
                           color: Colors.grey,
                         ),
@@ -101,7 +103,7 @@ class NewsDetailsScreen extends StatelessWidget {
                           _launchUrl(args.url ?? "");
                         },
                         child: Text(
-                          "View Full Article",
+                          AppLocalizations.of(context)!.view_full_article,
                           style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w900,
